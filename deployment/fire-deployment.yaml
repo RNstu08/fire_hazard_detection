@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fire-hazard-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fire-hazard-api
+  template:
+    metadata:
+      labels:
+        app: fire-hazard-api
+    spec:
+      containers:
+      - name: fire-hazard-api
+        image: fire-hazard-api:latest  # LOCAL Docker image
+        imagePullPolicy: Never         # very important for local images
+        ports:
+        - containerPort: 5000
